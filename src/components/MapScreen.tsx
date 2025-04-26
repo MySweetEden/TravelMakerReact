@@ -384,12 +384,10 @@ const MapScreen: React.FC = () => {
   };
 
   return (
-    <div style={{ 
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
+    <div style={{
+      height: '100vh',
+      width: '100vw',
+      position: 'relative',
       zIndex: 1
     }}>
       <Stepper currentStep={currentStep} />
@@ -407,7 +405,7 @@ const MapScreen: React.FC = () => {
           onClick={rollDice}
           style={{
             position: 'absolute',
-            bottom: '20px',
+            bottom: 'calc(20px + env(safe-area-inset-bottom))',
             left: '50%',
             transform: 'translateX(-50%)',
             zIndex: 1000,
@@ -428,7 +426,7 @@ const MapScreen: React.FC = () => {
           onClick={copyResults}
           style={{
             position: 'absolute',
-            bottom: '20px',
+            bottom: 'calc(20px + env(safe-area-inset-bottom))',
             left: '50%',
             transform: 'translateX(-50%)',
             zIndex: 1000,
