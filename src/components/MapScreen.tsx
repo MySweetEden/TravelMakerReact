@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { MapContainer, TileLayer, Popup, Polygon, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
 import Papa from 'papaparse';
 import ReactDice from 'react-dice-complete';
 import './DiceStyles.css';
