@@ -385,9 +385,11 @@ const MapScreen: React.FC = () => {
 
   return (
     <div style={{
-      height: '100vh',
-      width: '100vw',
-      position: 'relative',
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
       zIndex: 1
     }}>
       <Stepper currentStep={currentStep} />
