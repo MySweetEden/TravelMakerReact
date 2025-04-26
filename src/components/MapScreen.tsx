@@ -112,12 +112,12 @@ const [diceSize, setDiceSize] = useState<number>(Math.min(window.innerWidth * 0.
 
   // 表示メッセージを3段階で切り替え
   const message = isReady
-    ? 'サイコロをクリックして振ってください！'
+    ? 'サイコロを振ってください！'
     : isRolling
       ? 'サイコロを振っています…'
       : rollStartTime > 0
         ? 'サイコロが振られました！'
-        : 'サイコロを準備しています…少々お待ちください';
+        : 'サイコロを準備しています';
 
   if (!isVisible) return null;
 
