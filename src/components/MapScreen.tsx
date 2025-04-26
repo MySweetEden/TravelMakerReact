@@ -405,7 +405,7 @@ const MapScreen: React.FC = () => {
           onClick={rollDice}
           style={{
             position: 'absolute',
-            bottom: 'calc(20px + env(safe-area-inset-bottom))',
+            bottom: '20px',
             left: '50%',
             transform: 'translateX(-50%)',
             zIndex: 1000,
@@ -426,7 +426,7 @@ const MapScreen: React.FC = () => {
           onClick={copyResults}
           style={{
             position: 'absolute',
-            bottom: 'calc(20px + env(safe-area-inset-bottom))',
+            bottom: '20px',
             left: '50%',
             transform: 'translateX(-50%)',
             zIndex: 1000,
