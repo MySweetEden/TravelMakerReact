@@ -1,21 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polygon, Polyline, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Popup, Polygon, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import Papa from 'papaparse';
 import ReactDice from 'react-dice-complete';
 import './DiceStyles.css';
-
-// Leafletのデフォルトアイコンの問題を解決
-const icon = L.icon({
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41]
-});
 
 interface LocationData {
   name: string;
@@ -199,7 +188,6 @@ const MapScreen: React.FC = () => {
   const [isRolling, setIsRolling] = useState(false);
   const [rollStartTime, setRollStartTime] = useState<number>(0);
   const [showCopyToast, setShowCopyToast] = useState(false);
-  const diceRef = useRef<any>(null);
 
   const parseCenterCoord = (centerCoord: string): [number, number] | undefined => {
     if (!centerCoord) return undefined;

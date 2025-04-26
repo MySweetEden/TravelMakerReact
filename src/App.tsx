@@ -1,4 +1,3 @@
-import React from 'react';
 import MapScreen from './components/MapScreen';
 import './App.css';
 
