@@ -92,6 +92,12 @@ const DiceOverlay: React.FC<{
 }> = ({ isVisible, onRollComplete, setRollStartTime, isRolling, rollStartTime }) => {
   const diceRef = useRef<any>(null);
   const [isReady, setIsReady] = useState(false);
+const [diceSize, setDiceSize] = useState<number>(Math.min(window.innerWidth * 0.15, 120));
+  useEffect(() => {
+  const handleResize = () => setDiceSize(Math.min(window.innerWidth * 0.15, 120));
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     if (isVisible) {
@@ -149,14 +155,20 @@ const DiceOverlay: React.FC<{
       </div>
       <div 
         style={{
-          transform: 'scale(3)',
+          width: '15vw',
+          maxWidth: '200px',
+          height: '15vw',
+          maxHeight: '200px',
           background: 'transparent',
-          padding: '20px',
+          padding: '10px',
           borderRadius: '10px',
           boxShadow: '0 0 20px rgba(0,168,255,0.5)',
           cursor: isReady ? 'pointer' : 'default',
           transition: 'all 0.3s ease',
-          opacity: isReady ? 1 : 0.7
+          opacity: isReady ? 1 : 0.7,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
         }}
         onClick={handleRollClick}
       >
@@ -166,11 +178,12 @@ const DiceOverlay: React.FC<{
           ref={diceRef}
           rollTime={1}
           disableIndividual={false}
-          margin={30}
+          margin={10}
           outline={true}
           outlineColor="#00a8ff"
           faceColor="#ffffff"
           dotColor="#00a8ff"
+          dieSize={diceSize}
         />
       </div>
     </div>
