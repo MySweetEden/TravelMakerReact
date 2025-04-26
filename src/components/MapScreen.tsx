@@ -278,23 +278,23 @@ const MapScreen: React.FC = () => {
   // サイコロを振る関数
   const rollDice = () => {
     if (currentStep >= 3 || isRolling) return;
+    alert('rollDiceが呼ばれた！');
     setIsRolling(true);
     setIsDiceVisible(true);
   };
 
   // サイコロの結果を処理する関数
   const handleDiceRollComplete = (value: number) => {
-    // Guard: only proceed if a roll is in progress and rollStartTime is set
     if (!isRolling || rollStartTime === 0) return;
-    // Validate dice result: must be 1-6
     if (typeof value !== 'number' || value < 1 || value > 6) return;
-
+    alert(`handleDiceRollCompleteが呼ばれた！ 値: ${value}`);
+    
     const newResults = [...diceResults, value];
     setDiceResults(newResults);
-
+  
     const elapsed = Date.now() - rollStartTime;
     const remaining = Math.max(0, 2000 - elapsed);
-
+  
     setTimeout(() => {
       setCurrentStep(prev => prev + 1);
       setIsDiceVisible(false);
