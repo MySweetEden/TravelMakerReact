@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   return (
     <div style={{ 
-      position: 'relative',
+      position: 'fixed',
       width: '100dvw',
       height: '100dvh',
       overflow: 'hidden'
