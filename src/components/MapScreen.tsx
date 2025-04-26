@@ -278,7 +278,7 @@ const MapScreen: React.FC = () => {
   // サイコロを振る関数
   const rollDice = () => {
     if (currentStep >= 3 || isRolling) return;
-    alert('rollDiceが呼ばれた！');
+    // alert('rollDiceが呼ばれた！');
     setIsRolling(true);
     setIsDiceVisible(true);
   };
@@ -287,7 +287,7 @@ const MapScreen: React.FC = () => {
   const handleDiceRollComplete = (value: number) => {
     if (!isRolling || rollStartTime === 0) return;
     if (typeof value !== 'number' || value < 1 || value > 6) return;
-    alert(`handleDiceRollCompleteが呼ばれた！ 値: ${value}`);
+    // alert(`handleDiceRollCompleteが呼ばれた！ 値: ${value}`);
     
     const newResults = [...diceResults, value];
     setDiceResults(newResults);
