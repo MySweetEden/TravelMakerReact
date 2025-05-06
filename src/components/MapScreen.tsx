@@ -110,6 +110,15 @@ const [diceSize, setDiceSize] = useState<number>(Math.min(window.innerWidth * 0.
     }
   }, [isVisible]);
 
+  useEffect(() => {
+    if (diceRef.current?.rollAll) {
+      const orig = diceRef.current.rollAll;
+      diceRef.current.rollAll = (...args: any[]) => {
+        return orig.apply(diceRef.current, args);
+      };
+    }
+  }, [diceRef]);
+
   // 表示メッセージを3段階で切り替え
   const message = isReady
     ? 'サイコロを振ってください！'
@@ -122,11 +131,17 @@ const [diceSize, setDiceSize] = useState<number>(Math.min(window.innerWidth * 0.
   if (!isVisible) return null;
 
   const handleRollClick = () => {
+    diceRef.current?.rollAll();
+
     if (isReady && diceRef.current) {
       setIsReady(false);
       setRollStartTime(Date.now());
       diceRef.current.rollAll();
     }
+  };
+
+  const wrappedOnRoll = (value: number) => {
+    onRollComplete(value);
   };
 
   return (
@@ -174,10 +189,10 @@ const [diceSize, setDiceSize] = useState<number>(Math.min(window.innerWidth * 0.
       >
         <ReactDice
           numDice={1}
-          rollDone={onRollComplete}
+          rollDone={wrappedOnRoll}
           ref={diceRef}
           rollTime={1}
-          disableIndividual={false}
+          disableIndividual={true}
           margin={10}
           outline={true}
           outlineColor="#00a8ff"
@@ -360,12 +375,10 @@ const MapScreen: React.FC = () => {
             setFilteredLocations(data);
           },
           error: (error: Error) => {
-            console.error('CSV parse error:', error);
           }
         });
       })
       .catch(error => {
-        console.error('Fetch error:', error);
       });
   }, []);
 
