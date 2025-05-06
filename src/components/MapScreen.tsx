@@ -374,11 +374,11 @@ const MapScreen: React.FC = () => {
             setLocations(data);
             setFilteredLocations(data);
           },
-          error: (error: Error) => {
+          error: () => {
           }
         });
       })
-      .catch(error => {
+      .catch(() => {
       });
   }, []);
 
