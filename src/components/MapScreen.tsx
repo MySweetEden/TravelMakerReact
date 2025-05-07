@@ -92,9 +92,9 @@ const DiceOverlay: React.FC<{
 }> = ({ isVisible, onRollComplete, setRollStartTime, isRolling, rollStartTime }) => {
   const diceRef = useRef<any>(null);
   const [isReady, setIsReady] = useState(false);
-const [diceSize, setDiceSize] = useState<number>(Math.min(window.innerWidth * 0.15, 120));
+  const [diceSize, setDiceSize] = useState<number>(Math.min(window.innerWidth * 0.15, 120));
   useEffect(() => {
-  const handleResize = () => setDiceSize(Math.min(window.innerWidth * 0.15, 120));
+    const handleResize = () => setDiceSize(Math.min(window.innerWidth * 0.15, 120));
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -110,15 +110,6 @@ const [diceSize, setDiceSize] = useState<number>(Math.min(window.innerWidth * 0.
     }
   }, [isVisible]);
 
-  useEffect(() => {
-    if (diceRef.current?.rollAll) {
-      const orig = diceRef.current.rollAll;
-      diceRef.current.rollAll = (...args: any[]) => {
-        return orig.apply(diceRef.current, args);
-      };
-    }
-  }, [diceRef]);
-
   // 表示メッセージを3段階で切り替え
   const message = isReady
     ? 'サイコロを振ってください！'
@@ -131,8 +122,6 @@ const [diceSize, setDiceSize] = useState<number>(Math.min(window.innerWidth * 0.
   if (!isVisible) return null;
 
   const handleRollClick = () => {
-    diceRef.current?.rollAll();
-
     if (isReady && diceRef.current) {
       setIsReady(false);
       setRollStartTime(Date.now());
